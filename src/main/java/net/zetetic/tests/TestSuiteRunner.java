@@ -45,8 +45,14 @@ public class TestSuiteRunner extends AsyncTask<ResultNotifier, TestResult, Void>
         // XXX test(s) BROKEN with built-in Android database API:
         //tests.add(new AttachDatabaseTest());
         tests.add(new GetTypeFromCrossProcessCursorWrapperTest());
+        // TBD try here (first time):
+        //tests.add(new MultiThreadReadWriteTest());
         tests.add(new NullQueryResultTest());
+        // try here (second time-would stop quickly):
+        //tests.add(new MultiThreadReadWriteTest());
         tests.add(new CrossProcessCursorQueryTest());
+        // try here (third time-would stop quickly):
+        //tests.add(new MultiThreadReadWriteTest());
         tests.add(new InterprocessBlobQueryTest());
         tests.add(new LoopingQueryTest());
         tests.add(new LoopingCountQueryTest());
@@ -67,6 +73,7 @@ public class TestSuiteRunner extends AsyncTask<ResultNotifier, TestResult, Void>
         //tests.add(new NestedTransactionsTest());
         // Does not work with built-in database API on most versions of Android:
         //tests.add(new UnicodeTest());
+        // TBD will be moved:
         tests.add(new MultiThreadReadWriteTest());
         tests.add(new RawQueryTest());
         tests.add(new OpenReadOnlyDatabaseTest());
