@@ -2,8 +2,10 @@ package net.zetetic.tests;
 
 import android.content.Context;
 import android.database.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteOpenHelper;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 import net.zetetic.ZeteticApplication;
 
 import java.io.File;
@@ -19,7 +21,7 @@ public class ReadableDatabaseTest extends SQLCipherTest {
             file.delete();
         }
         ReadableDatabaseHelper helper = new ReadableDatabaseHelper(ZeteticApplication.getInstance());
-        SQLiteDatabase readableDatabase = helper.getReadableDatabase(ZeteticApplication.DATABASE_PASSWORD);
+        SQLiteDatabase readableDatabase = helper.getReadableDatabase(); // (ZeteticApplication.DATABASE_PASSWORD);
         Cursor results = readableDatabase.rawQuery("select * from t1", new String[]{});
         int resultCount = 0;
         while (results.moveToNext()){

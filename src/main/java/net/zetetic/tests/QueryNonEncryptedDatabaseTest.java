@@ -1,7 +1,8 @@
 package net.zetetic.tests;
 
 import android.database.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase;
+
 import net.zetetic.ZeteticApplication;
 
 import java.io.File;
@@ -17,7 +18,7 @@ public class QueryNonEncryptedDatabaseTest extends SQLCipherTest {
             File unencryptedDatabase = ZeteticApplication.getInstance().getDatabasePath("unencrypted.db");
             ZeteticApplication.getInstance().extractAssetToDatabaseDirectory("unencrypted.db");
             database.close();
-            database = SQLiteDatabase.openOrCreateDatabase(unencryptedDatabase, "", null);
+            database = SQLiteDatabase.openOrCreateDatabase(unencryptedDatabase, null);
             Cursor cursor = database.rawQuery("select * from t1", new String[]{});
             cursor.moveToFirst();
             String a = cursor.getString(0);

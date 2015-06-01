@@ -1,13 +1,14 @@
 package net.zetetic.tests;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase;
+
 import net.zetetic.QueryHelper;
 
 public class EnableForeignKeySupportTest extends SQLCipherTest {
     @Override
     public boolean execute(SQLiteDatabase database) {
         String defaultValue = QueryHelper.singleValueFromQuery(database, "PRAGMA foreign_keys");
-        database.rawExecSQL("PRAGMA foreign_keys = ON;");
+        database.execSQL("PRAGMA foreign_keys = ON;", new Object[]{});
         String updatedValue = QueryHelper.singleValueFromQuery(database, "PRAGMA foreign_keys");
         return defaultValue.equals("0") && updatedValue.equals("1");
     }

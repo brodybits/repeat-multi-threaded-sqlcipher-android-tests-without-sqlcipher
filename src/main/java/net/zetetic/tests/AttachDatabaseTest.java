@@ -1,16 +1,18 @@
 package net.zetetic.tests;
 
+import android.database.sqlite.SQLiteDatabase;
 
-import net.sqlcipher.database.SQLiteDatabase;
 import net.zetetic.QueryHelper;
 import net.zetetic.ZeteticApplication;
 
-import javax.management.Query;
+//import javax.management.Query;
 import java.io.File;
 
+// XXX TODO BROKEN with built-in Android database API:
 public class AttachDatabaseTest extends SQLCipherTest {
     @Override
     public boolean execute(SQLiteDatabase database) {
+        // XXX TODO without password:
         boolean status;
         String password = "test123";
         File fooDatabase = ZeteticApplication.getInstance().getDatabasePath("foo.db");

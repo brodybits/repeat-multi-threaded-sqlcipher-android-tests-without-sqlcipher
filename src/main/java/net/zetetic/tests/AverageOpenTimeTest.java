@@ -1,25 +1,19 @@
 package net.zetetic.tests;
 
 import android.util.Log;
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabaseHook;
+
+import android.database.sqlite.SQLiteDatabase;
+
 import net.zetetic.QueryHelper;
 import net.zetetic.ZeteticApplication;
 
 import java.io.File;
 import java.util.Date;
 
+// XXX TODO BROKEN with built-in Android database API:
 public class AverageOpenTimeTest extends SQLCipherTest {
 
     int MAX_ATTEMPTS = 10;
-
-    SQLiteDatabaseHook hook = new SQLiteDatabaseHook() {
-        public void preKey(SQLiteDatabase sqLiteDatabase) {
-        }
-        public void postKey(SQLiteDatabase sqLiteDatabase) {
-            //sqLiteDatabase.rawExecSQL("PRAGMA kdf_iter = 64000;");
-        }
-    };
 
     @Override
     public boolean execute(SQLiteDatabase database) {
@@ -30,7 +24,7 @@ public class AverageOpenTimeTest extends SQLCipherTest {
         File databasePath = ZeteticApplication.getInstance().getDatabasePath(ZeteticApplication.DATABASE_NAME);
         for (int attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
             Date start = new Date();
-            database = SQLiteDatabase.openOrCreateDatabase(databasePath, ZeteticApplication.DATABASE_PASSWORD, null, hook);
+            database = SQLiteDatabase.openOrCreateDatabase(databasePath, null);
             Date end = new Date();
             String kdf = QueryHelper.singleValueFromQuery(database, "PRAGMA kdf_iter;");
             Log.i(TAG, String.format("KDF value:%s", kdf));
@@ -45,7 +39,7 @@ public class AverageOpenTimeTest extends SQLCipherTest {
 
     @Override
     protected SQLiteDatabase createDatabase(File databasePath) {
-        return SQLiteDatabase.openOrCreateDatabase(databasePath, ZeteticApplication.DATABASE_PASSWORD, null, hook);
+        return SQLiteDatabase.openOrCreateDatabase(databasePath, null);
     }
 
     @Override

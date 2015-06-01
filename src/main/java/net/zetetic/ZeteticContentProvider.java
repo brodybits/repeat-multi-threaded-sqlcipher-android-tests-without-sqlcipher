@@ -3,9 +3,11 @@ package net.zetetic;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
+
 import android.net.Uri;
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteQueryBuilder;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 
 import java.io.File;
 
@@ -28,7 +30,7 @@ public class ZeteticContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
-        SQLiteDatabase.loadLibs(ZeteticApplication.getInstance());
+        //SQLiteDatabase.loadLibs(ZeteticApplication.getInstance());
         File databasePath = ZeteticApplication.getInstance().getDatabasePath(ZeteticApplication.DATABASE_NAME);
         database = ZeteticApplication.getInstance().createDatabase(databasePath);
 

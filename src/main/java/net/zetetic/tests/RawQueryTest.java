@@ -1,7 +1,7 @@
 package net.zetetic.tests;
 
-import net.sqlcipher.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public class RawQueryTest extends SQLCipherTest {
 
@@ -11,7 +11,8 @@ public class RawQueryTest extends SQLCipherTest {
         database.execSQL("create table t1(a,b);");
         database.execSQL("insert into t1(a,b) values(?, ?);",
                 new Object[]{"one for the money", "two for the show"});
-        Cursor cursor = database.rawQuery("select * from t1;", null, 1, 1);
+        //Cursor cursor = database.rawQuery("select * from t1;", null, 1, 1);
+        Cursor cursor = database.rawQuery("select * from t1;", null);
         if(cursor != null){
             while(cursor.moveToNext()) {
                 cursor.getString(0);

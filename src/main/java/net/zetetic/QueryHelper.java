@@ -1,7 +1,8 @@
 package net.zetetic;
 
 import android.database.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
+
+import android.database.sqlite.SQLiteDatabase;
 
 
 public class QueryHelper {

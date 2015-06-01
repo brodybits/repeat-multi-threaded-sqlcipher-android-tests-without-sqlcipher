@@ -2,7 +2,9 @@ package net.zetetic.tests;
 
 import android.app.Activity;
 import android.net.Uri;
-import net.sqlcipher.database.SQLiteDatabase;
+
+import android.database.sqlite.SQLiteDatabase;
+
 import net.zetetic.ZeteticApplication;
 import net.zetetic.ZeteticContentProvider;
 

@@ -2,7 +2,8 @@ package net.zetetic;
 
 import android.app.Activity;
 import android.app.Application;
-import net.sqlcipher.database.SQLiteDatabase;
+
+import android.database.sqlite.SQLiteDatabase;
 
 import java.io.*;
 
@@ -40,7 +41,7 @@ public class ZeteticApplication extends Application {
     }
 
     public SQLiteDatabase createDatabase(File databaseFile){
-        return SQLiteDatabase.openOrCreateDatabase(databaseFile, DATABASE_PASSWORD, null);
+        return SQLiteDatabase.openOrCreateDatabase(databaseFile, null);
     }
 
     public void extractAssetToDatabaseDirectory(String fileName) throws IOException {

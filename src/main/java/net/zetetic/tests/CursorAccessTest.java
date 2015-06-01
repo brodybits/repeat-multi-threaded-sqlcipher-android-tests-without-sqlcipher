@@ -1,9 +1,11 @@
 package net.zetetic.tests;
 
 import android.content.Context;
-import net.sqlcipher.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteOpenHelper;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 import net.zetetic.ZeteticApplication;
 
 import java.io.File;
@@ -23,7 +25,7 @@ public class CursorAccessTest extends SQLCipherTest {
 
         MyHelper databaseHelper = new MyHelper(ZeteticApplication.getInstance());
 
-        SQLiteDatabase db = databaseHelper.getWritableDatabase(ZeteticApplication.DATABASE_PASSWORD);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase(); // (ZeteticApplication.DATABASE_PASSWORD);
 
         Cursor results = db.rawQuery("select * from t1", new String[]{});
         results.moveToFirst();

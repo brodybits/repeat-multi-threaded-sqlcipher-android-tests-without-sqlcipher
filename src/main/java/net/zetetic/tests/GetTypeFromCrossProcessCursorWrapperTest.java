@@ -1,7 +1,7 @@
 package net.zetetic.tests;
 
-import net.sqlcipher.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public class GetTypeFromCrossProcessCursorWrapperTest extends SQLCipherTest {
 

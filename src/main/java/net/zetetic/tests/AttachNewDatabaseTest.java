@@ -1,16 +1,17 @@
 package net.zetetic.tests;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase;
+
 import net.zetetic.ZeteticApplication;
 
 import java.io.File;
 
 public class AttachNewDatabaseTest extends SQLCipherTest {
     @Override
-    public boolean execute(SQLiteDatabase encryptedDatabase) {
+    public boolean execute(SQLiteDatabase unencryptedDatabase) {
 
-        encryptedDatabase.execSQL("create table t1(a,b)");
-        encryptedDatabase.execSQL("insert into t1(a,b) values(?, ?)", new Object[]{"one", "two"});
+        unencryptedDatabase.execSQL("create table t1(a,b)");
+        unencryptedDatabase.execSQL("insert into t1(a,b) values(?, ?)", new Object[]{"one", "two"});
 
         String newKey = "foo";
         File newDatabasePath = ZeteticApplication.getInstance().getDatabasePath("normal.db");
@@ -18,10 +19,10 @@ public class AttachNewDatabaseTest extends SQLCipherTest {
         String createCommand = "create table encrypted.t1(a,b)";
         String insertCommand = "insert into encrypted.t1 SELECT * from t1";
         String detachCommand = "DETACH DATABASE encrypted";
-        encryptedDatabase.execSQL(attachCommand, new Object[]{newDatabasePath.getAbsolutePath(), newKey});
-        encryptedDatabase.execSQL(createCommand);
-        encryptedDatabase.execSQL(insertCommand);
-        encryptedDatabase.execSQL(detachCommand);
+        unencryptedDatabase.execSQL(attachCommand, new Object[]{newDatabasePath.getAbsolutePath(), newKey});
+        unencryptedDatabase.execSQL(createCommand);
+        unencryptedDatabase.execSQL(insertCommand);
+        unencryptedDatabase.execSQL(detachCommand);
 
         return true;
     }
@@ -32,10 +33,12 @@ public class AttachNewDatabaseTest extends SQLCipherTest {
         newDatabasePath.delete();
     }
 
+    /** TBD was never used:
     public android.database.sqlite.SQLiteDatabase createNormalDatabase(){
         File newDatabasePath = ZeteticApplication.getInstance().getDatabasePath("normal.db");
         return android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(newDatabasePath.getAbsolutePath(), null);
     }
+    **/
 
     @Override
     public String getName() {

@@ -1,6 +1,6 @@
 package net.zetetic.tests;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase;
 
 public class AutoVacuumOverReadTest extends SQLCipherTest {
     @Override

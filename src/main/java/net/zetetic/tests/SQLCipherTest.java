@@ -1,7 +1,9 @@
 package net.zetetic.tests;
 
 import android.util.Log;
-import net.sqlcipher.database.SQLiteDatabase;
+
+import android.database.sqlite.SQLiteDatabase;
+
 import net.zetetic.ZeteticApplication;
 
 import java.io.File;

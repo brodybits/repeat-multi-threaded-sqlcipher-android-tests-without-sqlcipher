@@ -1,8 +1,8 @@
 package net.zetetic.tests;
 
 import android.util.Log;
-import net.sqlcipher.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import net.zetetic.ZeteticApplication;
 
 import java.io.File;
@@ -27,10 +27,10 @@ public class MultiThreadReadWriteTest extends SQLCipherTest {
 
     synchronized SQLiteDatabase getDatabase(DatabaseAccessType accessType) {
         if (accessType == DatabaseAccessType.InstancePerRequest) {
-            return SQLiteDatabase.openOrCreateDatabase(databaseFile, password, null);
+            return SQLiteDatabase.openOrCreateDatabase(databaseFile, null);
         } else if (accessType == DatabaseAccessType.Singleton) {
             if (instance == null) {
-                instance = SQLiteDatabase.openOrCreateDatabase(databaseFile, password, null);
+                instance = SQLiteDatabase.openOrCreateDatabase(databaseFile, null);
             }
             return instance;
         }
