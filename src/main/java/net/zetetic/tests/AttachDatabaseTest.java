@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import net.zetetic.QueryHelper;
 import net.zetetic.ZeteticApplication;
 
-//import javax.management.Query;
 import java.io.File;
 
 // XXX TODO BROKEN with built-in Android database API:

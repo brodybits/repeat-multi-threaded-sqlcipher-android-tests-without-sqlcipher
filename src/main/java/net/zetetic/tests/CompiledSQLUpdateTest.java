@@ -9,7 +9,6 @@ public class CompiledSQLUpdateTest extends SQLCipherTest {
     @Override
     public boolean execute(SQLiteDatabase database) {
 
-        //database.rawExecSQL("create table ut1(a text, b integer)");
         database.execSQL("create table ut1(a text, b integer)", new Object[]{});
         database.execSQL("insert into ut1(a, b) values (?,?)", new Object[]{"s1", new Integer(100)});
 
